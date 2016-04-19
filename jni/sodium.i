@@ -108,6 +108,13 @@ int crypto_hash_sha256(unsigned char *out, const unsigned char *in,
 int crypto_hash_sha512(unsigned char *out, const unsigned char *in,
                        unsigned long long inlen);
 
+int crypto_generichash(unsigned char *dst_hash,
+                       unsigned long long dst_len,
+                       const unsigned char *src_input,
+                       unsigned long long input_len,
+                       const unsigned char *src_key,
+                       unsigned long long key_len);
+
 int crypto_generichash_blake2b(unsigned char *out, size_t outlen,
                                const unsigned char *in,
                                unsigned long long inlen,
