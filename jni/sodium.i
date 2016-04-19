@@ -146,6 +146,37 @@ int crypto_box_curve25519xsalsa20poly1305_open(unsigned char *m,
                                                const unsigned char *pk,
                                                const unsigned char *sk);
 
+int crypto_box_keypair(unsigned char *dst_public_Key,
+                       unsigned char *dst_private_key);
+
+int crypto_box_seed_keypair(unsigned char *dst_public_key,
+                            unsigned char *dst_private_key,
+                            const unsigned char *src_seed);
+
+int crypto_box_easy(unsigned char *dst_cipher,
+                    const unsigned char *src_plain,
+                    unsigned long long plain_len,
+                    const unsigned char *nonce,
+                    const unsigned char *remote_public_key,
+                    const unsigned char *local_private_key);
+
+int crypto_box_open_easy(unsigned char *dst_plain,
+                         const unsigned char *src_cipher,
+                         unsigned long long cipher_len,
+                         const unsigned char *nonce,
+                         const unsigned char *remote_public_key,
+                         const unsigned char *local_private_key);
+
+int crypto_box_seal(unsigned char *dst_cipher,
+                    const unsigned char *src_plain,
+                    unsigned long long plain_len,
+                    const unsigned char *remote_public_key);
+
+int crypto_box_seal_open(unsigned char *dst_plain,
+                         const unsigned char *src_cipher,
+                         unsigned long long cipher_len,
+                         const unsigned char *local_public_key,
+                         const unsigned char *local_private_key);
 
 int crypto_scalarmult_curve25519(unsigned char *q, const unsigned char *n,
                                  const unsigned char *p);
@@ -162,6 +193,18 @@ int crypto_secretbox_xsalsa20poly1305_open(unsigned char *m,
                                            unsigned long long clen,
                                            const unsigned char *n,
                                            const unsigned char *k);
+
+int crypto_secretbox_easy(unsigned char *dst_cipher,
+                          const unsigned char *src_plain,
+                          unsigned long long plain_len,
+                          const unsigned char *nonce,
+                          const unsigned char *secret_key);
+
+int crypto_secretbox_open_easy(unsigned char *dst_plain,
+                               const unsigned char *src_cipher,
+                               unsigned long long cipher_len,
+                               const unsigned char *nonce,
+                               const unsigned char *secret_key);
 
 int crypto_sign_ed25519_seed_keypair(unsigned char *pk, unsigned char *sk,
                                      const unsigned char *seed);
